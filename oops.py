@@ -62,18 +62,85 @@
 
 
 # constructor oops conecpts  
-class Student:
+# class Student:
     
-    def __init__(self,name,marks):
-        self.name=name
-        self.marks=marks
+
         
-    def get_avg(self):
-        sum=0
-        for val in self.marks:
-            sum+=val
-            avg=sum/3
-        print(f"{self.name} your avg score is : {avg}")
+        
+#     def __init__(self,name,marks):
+#         self.name=name
+#         self.marks=marks
+        
+#     def get_avg(self):
+#         sum=0
+#         for val in self.marks:
+#             sum+=val
+#             avg=sum/3
+#         print(f"{self.name} your avg score is : {avg}")
                   
-s1=Student("jajaj",[99,98   ,97])
-s1.get_avg()
+# s1=Student("jajaj",[99,98   ,97])
+
+
+# s1.get_avg()
+
+
+# staticmthod like decorators in python 
+
+# class demo:
+    
+#     @staticmethod #decorators 
+#     def hello():
+        
+#         print("good morning guyss...")
+
+# demo1=demo()
+# demo1.hello()
+
+
+# abstraction methos ,,,,,
+
+
+# class car:
+    
+#     def __init__(self):
+#         self.acc=False
+#         self.brk=False
+#         self.clutch =False
+#     def car_start(self):
+#         self.clutch=True
+#         self.acc=True
+#         print("your car is start now...")
+        
+# car1=car()
+# car1.car_start()
+
+
+#example with prectice to understand oops conecpts 
+
+
+class Account:
+    
+    def __init__(self,name,balance,acc):
+        self.nameholder=name
+        self.balance=balance
+        self.acc_no=acc
+        print(f"accountholder name:{self.nameholder}")
+        print(f"account number is:{self.acc_no}")
+        print(f"accunt balance is :{self.balance}")
+        
+    def debit(self,amount):
+        self.balance-=amount
+        print(f"{amount} was debited your account ")
+        print(f"total balance is : {self.balance}")
+    
+    def credit(self,amount):
+        self.balance+=amount
+        print(f"{amount} form your account")
+        print(f"total balance is : {self.balance}")
+        
+        
+        
+user1=Account("jay",1000,1234567)
+
+print(user1.nameholder,user1.acc_no,user1.balance)
+user1.credit(500)
