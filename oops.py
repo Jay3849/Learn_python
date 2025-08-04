@@ -118,29 +118,85 @@
 #example with prectice to understand oops conecpts 
 
 
-class Account:
+# class Account:
     
-    def __init__(self,name,balance,acc):
-        self.nameholder=name
-        self.balance=balance
-        self.acc_no=acc
-        print(f"accountholder name:{self.nameholder}")
-        print(f"account number is:{self.acc_no}")
-        print(f"accunt balance is :{self.balance}")
+#     def __init__(self,name,balance,acc):
+#         self.nameholder=name
+#         self.balance=balance
+#         self.acc_no=acc
+#         print(f"accountholder name:{self.nameholder}")
+#         print(f"account number is:{self.acc_no}")
+#         print(f"accunt balance is :{self.balance}")
         
-    def debit(self,amount):
-        self.balance-=amount
-        print(f"{amount} was debited your account ")
-        print(f"total balance is : {self.balance}")
+#     def debit(self,amount):
+#         self.balance-=amount
+#         print(f"{amount} was debited your account ")
+#         print(f"total balance is : {self.balance}")
     
-    def credit(self,amount):
-        self.balance+=amount
-        print(f"{amount} form your account")
-        print(f"total balance is : {self.balance}")
+#     def credit(self,amount):
+#         self.balance+=amount
+#         print(f"{amount} form your account")
+#         print(f"total balance is : {self.balance}")
         
         
         
-user1=Account("jay",1000,1234567)
+# user1=Account("jay",1000,1234567)
 
-print(user1.nameholder,user1.acc_no,user1.balance)
-user1.credit(500)
+# print(user1.nameholder,user1.acc_no,user1.balance)
+# user1.credit(500)
+
+
+# calculate area and circle 
+# class Circle:
+    
+#     def __init__(self,redius):
+#         self.radius=redius
+        
+#     def area(self):
+#         return (22/7)*self.radius**2
+#     def parameter(self):
+#         return 2*(22/7)*self.radius
+    
+# c1=Circle(  21)
+# print(c1.area())
+# print(c1.parameter())
+
+
+# class Emp:
+#     def __init__(self,dept,role,salary):
+#         self.dept=dept
+#         self.role=role
+#         self.salary=salary
+#     def Show_details(self):
+#         print("department : ",self.dept)
+#         print("Role : ",self.role)
+#         print("salary is : ",self.salary)
+        
+# class Engineer(Emp):
+#     def __init__(self,name,age):
+        
+#         self.name=name
+#         self.age=age
+#         super().__init__("acc", "emp", 33000)
+    
+        
+# emp1=Engineer("jay","22")
+# emp1.Show_details()
+
+
+class Order:
+    
+    def __init__(self,item,price):
+        self.item=item
+        self.price=price
+    def __gt__(self,ord2):
+        return self.price>ordr2.price
+    
+ordr1=Order("packets",35)
+ordr2=Order("sugar",20)
+
+print(ordr1>ordr2)
+
+
+
+
