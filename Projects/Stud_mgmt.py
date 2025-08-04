@@ -36,11 +36,16 @@ def main():
     
         
         choice=int(input("enter here : "))
+ 
+            
         print("\n")
         if choice==1:
             name=input("enter your student name : ")
             grade=input("enter your student grade : ")
-            add_student(name,grade)
+            if name in student_grades:
+                print("student is already exist!!")
+            else:
+                 add_student(name,grade)
         elif choice==2:
             name=input("enter your student name : ")
             grade=input("enter your student grade : ")
