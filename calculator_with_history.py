@@ -69,6 +69,9 @@ def main ():
             history_clear()
         
         elif user_input=="history":
+            
+            
+            
             show_history()
         else :
             calculate(user_input)
