@@ -50,153 +50,90 @@
 # class Studnet:
     
 #     clg_name="sarvajnik clg.."      
-#     def __init__(self,name,marks):
-#         self.name=name
-#         self.marks=marks
-
-# s1=Studnet("jay",89)
-# print(s1.clg_name)
-# print(f"srtudent name: {s1.name}\nmamrks: {s1.marks}")
+# Book Class (Encapsulation)
 
 
 
 
-# constructor oops conecpts  
-# class Student:
+
+class Book:
+    def __init__(self, title, author, isbn, copies):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.copies = copies
     
-
-        
-        
-#     def __init__(self,name,marks):
-#         self.name=name
-#         self.marks=marks
-        
-#     def get_avg(self):
-#         sum=0
-#         for val in self.marks:
-#             sum+=val
-#             avg=sum/3
-#         print(f"{self.name} your avg score is : {avg}")
-                  
-# s1=Student("jajaj",[99,98   ,97])
-
-
-# s1.get_avg()
-
-
-# staticmthod like decorators in python 
-
-# class demo:
+    def borrow(self):
+        if self.copies > 0:
+            self.copies -= 1
+            return True
+        return False
     
-#     @staticmethod #decorators 
-#     def hello():
-        
-#         print("good morning guyss...")
+    def return_book(self):
+        self.copies += 1
 
-# demo1=demo()
-# demo1.hello()
-
-
-# abstraction methos ,,,,,
-
-
-# class car:
+class Person:
+    def __init__(self, name):
+        self.name = name
     
-#     def __init__(self):
-#         self.acc=False
-#         self.brk=False
-#         self.clutch =False
-#     def car_start(self):
-#         self.clutch=True
-#         self.acc=True
-#         print("your car is start now...")
-        
-# car1=car()
-# car1.car_start()
+    def show_details(self):
+        print(f"Person: {self.name}")
 
-
-#example with prectice to understand oops conecpts 
-
-
-# class Account:
+class Member(Person):
+    def __init__(self, name, member_id):
+        super().__init__(name)
+        self.member_id = member_id
+        self.borrowed = []
     
-#     def __init__(self,name,balance,acc):
-#         self.nameholder=name
-#         self.balance=balance
-#         self.acc_no=acc
-#         print(f"accountholder name:{self.nameholder}")
-#         print(f"account number is:{self.acc_no}")
-#         print(f"accunt balance is :{self.balance}")
-        
-#     def debit(self,amount):
-#         self.balance-=amount
-#         print(f"{amount} was debited your account ")
-#         print(f"total balance is : {self.balance}")
+    def borrow_book(self, book):
+        if book.borrow():
+            self.borrowed.append(book)
+            print(f"{self.name} borrowed {book.title}")
+        else:
+            print(f"{book.title} not available")
     
-#     def credit(self,amount):
-#         self.balance+=amount
-#         print(f"{amount} form your account")
-#         print(f"total balance is : {self.balance}")
-        
-        
-        
-# user1=Account("jay",1000,1234567)
-
-# print(user1.nameholder,user1.acc_no,user1.balance)
-# user1.credit(500)
-
-
-# calculate area and circle 
-# class Circle:
+    def return_book(self, book):
+        if book in self.borrowed:
+            book.return_book()
+            self.borrowed.remove(book)
+            print(f"{self.name} returned {book.title}")
     
-#     def __init__(self,redius):
-#         self.radius=redius
-        
-#     def area(self):
-#         return (22/7)*self.radius**2
-#     def parameter(self):
-#         return 2*(22/7)*self.radius
+    # Polymorphism → override show_details()
+    def show_details(self):
+        print(f"Member: {self.name}, Borrowed: {[b.title for b in self.borrowed]}")
+
+class Library:
+    def __init__(self):
+        self.books = []
+        self.members = []
     
-# c1=Circle(  21)
-# print(c1.area())
-# print(c1.parameter())
-
-
-# class Emp:
-#     def __init__(self,dept,role,salary):
-#         self.dept=dept
-#         self.role=role
-#         self.salary=salary
-#     def Show_details(self):
-#         print("department : ",self.dept)
-#         print("Role : ",self.role)
-#         print("salary is : ",self.salary)
-        
-# class Engineer(Emp):
-#     def __init__(self,name,age):
-        
-#         self.name=name
-#         self.age=age
-#         super().__init__("acc", "emp", 33000)
+    def add_book(self, book):
+        self.books.append(book)
     
-        
-# emp1=Engineer("jay","22")
-# emp1.Show_details()
-
-
-class Order:
-    
-    def __init__(self,item,price):
-        self.item=item
-        self.price=price
-    def __gt__(self,ord2):
-        return self.price>ordr2.price
-    
-ordr1=Order("packets",35)
-ordr2=Order("sugar",20)
-
-print(ordr1>ordr2)
+    def register_member(self, member):
+        self.members.append(member)
 
 
 
+lib = Library()
 
+# Add Books
+b1 = Book("Python", "Guido", "101", 2)
+b2 = Book("AI", "Andrew", "102", 1)
+lib.add_book(b1)
+lib.add_book(b2)
+
+# Add Members
+m1 = Member("Alice", "M01")
+m2 = Member("Bob", "M02")
+lib.register_member(m1)
+lib.register_member(m2)
+
+# Borrow/Return
+m1.borrow_book(b1)
+m2.borrow_book(b1)
+m1.return_book(b1)
+
+# Show Members
+m1.show_details()
+m2.show_details()
